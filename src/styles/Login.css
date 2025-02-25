@@ -1,0 +1,103 @@
+/* Center the login form */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+/* Login box styling */
+.login-box {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 40px;
+    width: 350px;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    margin-top: -10vh;
+}
+
+/* Input field styling */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    font-family: 'PoppinsRegular', sans-serif;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: white;
+    font-family: 'PoppinsThin', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'PoppinsThin', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Button styling */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    font-family: 'PoppinsMedium', sans-serif;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.login-box h2 {
+    color: white;
+    margin-bottom: 20px;
+    margin-top: -20px;
+    font-size: 4rem;
+    font-family: 'Modernline', sans-serif;
+}
+
+/* Toggle button styling */
+.toggle-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #FFD700;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+  font-family: 'PoppinsRegular', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.toggle-button:hover {
+  color: #FFA500;
+}
+

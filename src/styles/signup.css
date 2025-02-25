@@ -1,0 +1,78 @@
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    margin-top: 0px;
+}
+
+.signup-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 40px;
+    padding-top: 30px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    font-family: 'PoppinsMedium', sans-serif;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: white;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: white;
+}
+
+.input-group input::placeholder {
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.signup-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'PoppinsMedium', sans-serif;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.signup-box h2 {
+    font-family: 'modernLine', sans-serif;
+    color: white;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    font-size: 4rem;
+    letter-spacing: 2px;
+}
+  

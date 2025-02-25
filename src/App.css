@@ -1,8 +1,40 @@
+/* Font faces for custom fonts */
+@font-face {
+  font-family: 'Modernline';
+  src: url('./fonts/modernline.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'PoppinsRegular';
+  src: url('./fonts/poppins.regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PoppinsThin';
+  src: url('/src/fonts/Poppins-Thin.ttf') format('truetype'),
+       url('/fonts/Poppins-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PoppinsMedium';
+  src: url('./fonts/poppins.medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* General Styles */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .logo {
@@ -17,6 +49,7 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+
 
 @keyframes logo-spin {
   from {
@@ -40,3 +73,112 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Reset default styles for both html and body */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Main container for the app */
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  /* background-image: url('/bg.avif'); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Gradient overlay for frosted effect */
+.gradient-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+/* Content container with centralized positioning */
+.content-container {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styling for the auth container */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Styling for the toggle button container */
+.toggle-container {
+  margin-top: -80px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.toggle-container p {
+  color: white;
+  font-family: 'PoppinsRegular', sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #FFD700;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+  font-family: 'PoppinsRegular', sans-serif;
+  padding: 0;
+  margin: 0;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 11;
+  pointer-events: auto;
+}
+
+.toggle-button:hover {
+  color: #FFA500;
+}
+
+/* Frosted glass effect with fallback for non-supporting browsers */
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .gradient-overlay {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .gradient-overlay {
+    background: rgba(255, 255, 255, 0);
+  }
+}
+
