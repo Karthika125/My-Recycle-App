@@ -22,7 +22,7 @@ const ChoicePage: React.FC = () => {
   // Handle Creative Ideas button click
   const handleCreativeIdeasClick = (): void => {
     console.log('Creative ideas option clicked');
-    navigate('/listitems'); // 👈 Navigate to Listing Page
+    navigate('/craft_page'); // 👈 Navigate to Listing Page
   };
 
   return (

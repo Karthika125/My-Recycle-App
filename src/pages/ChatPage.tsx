@@ -10,14 +10,14 @@ interface Message {
 }
 
 interface Item {
-  id: string;
+  _id: string;
   title: string;
   description: string;
-  image_url: string;
+  imageUrl: string;
 }
 
 const ChatPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { itemId } = useParams<{ itemId: string }>();
   const navigate = useNavigate();
   const [item, setItem] = useState<Item | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -26,23 +26,21 @@ const ChatPage: React.FC = () => {
 
   // Fetch the item details
   useEffect(() => {
-    // Get the item from localStorage
-    const savedItem = localStorage.getItem(`item_${id}`);
+    // Get items from localStorage or use dummy data
+    const uploadedItems = JSON.parse(localStorage.getItem("items") || "[]");
+    const dummyItems = [
+      { _id: "1", title: "Plastic Bottle", description: "Recyclable plastic bottle.", imageUrl: "/assets/bottle.jpg" },
+      { _id: "2", title: "Cardboard Box", description: "Old but usable box.", imageUrl: "/assets/box.jpg" },
+    ];
+    const allItems = [...uploadedItems, ...dummyItems];
+    const foundItem = allItems.find(item => item._id === itemId);
     
-    if (savedItem) {
-      setItem(JSON.parse(savedItem));
-    } else {
-      // If not found in localStorage, check if it might be from ProductDetails
-      // This is a fallback for when coming directly from ProductDetails
-      const currentItem = JSON.parse(sessionStorage.getItem("currentItem") || "null");
-      if (currentItem && currentItem.id === id) {
-        setItem(currentItem);
-        localStorage.setItem(`item_${id}`, JSON.stringify(currentItem));
-      }
+    if (foundItem) {
+      setItem(foundItem);
     }
 
     // Load existing chat messages from localStorage if any
-    const savedMessages = localStorage.getItem(`chat_${id}`);
+    const savedMessages = localStorage.getItem(`chat_${itemId}`);
     if (savedMessages) {
       // Convert timestamps back to Date objects
       const parsedMessages = JSON.parse(savedMessages).map((msg: any) => ({
@@ -52,26 +50,22 @@ const ChatPage: React.FC = () => {
       setMessages(parsedMessages);
     } else {
       // Add a welcome message if no previous chat exists
-      setTimeout(() => {
-        if (item) {
-          const welcomeMessage: Message = {
-            id: Date.now().toString(),
-            sender: "seller",
-            text: `Welcome! I'm happy to answer any questions about this ${item.title}.`,
-            timestamp: new Date()
-          };
-          setMessages([welcomeMessage]);
-        }
-      }, 500);
+      const welcomeMessage: Message = {
+        id: Date.now().toString(),
+        sender: "seller",
+        text: `Welcome! I'm happy to answer any questions about this ${foundItem?.title || "item"}.`,
+        timestamp: new Date()
+      };
+      setMessages([welcomeMessage]);
     }
-  }, [id, item]);
+  }, [itemId]);
 
   // Save messages to localStorage whenever they change
   useEffect(() => {
-    if (messages.length > 0 && id) {
-      localStorage.setItem(`chat_${id}`, JSON.stringify(messages));
+    if (messages.length > 0) {
+      localStorage.setItem(`chat_${itemId}`, JSON.stringify(messages));
     }
-  }, [messages, id]);
+  }, [messages, itemId]);
 
   // Scroll to the bottom whenever messages change
   useEffect(() => {
@@ -109,9 +103,7 @@ const ChatPage: React.FC = () => {
   // End conversation function
   const handleEndConversation = () => {
     // Remove the chat from localStorage
-    if (id) {
-      localStorage.removeItem(`chat_${id}`);
-    }
+    localStorage.removeItem(`chat_${itemId}`);
     
     // Show confirmation message
     alert("Conversation ended. Starting a new chat.");
@@ -151,9 +143,10 @@ const ChatPage: React.FC = () => {
       <div className="chat-header">
         <div className="header-actions">
           <Link to="/list" className="back-button">← Back to Items</Link>
+          
         </div>
         <div className="item-info">
-          <img src={item.image_url} alt={item.title} className="chat-item-image" />
+          <img src={item.imageUrl} alt={item.title} className="chat-item-image" />
           <div>
             <h2>{item.title}</h2>
             <p>{item.description}</p>
@@ -162,10 +155,10 @@ const ChatPage: React.FC = () => {
       </div>
       
       <div className="messages-container">
-        {messages.map((message) => (
+        {messages.map((message, index) => (
           <div 
             key={message.id} 
-            className={`message ${message.sender === "user" ? "right-message" : "left-message"}`}
+            className={`message ${index % 2 === 0 ? "left-message" : "right-message"}`}
           >
             <div className="message-content">
               <div className="sender-label">{message.sender === "user" ? "You" : "Seller"}</div>
@@ -186,9 +179,9 @@ const ChatPage: React.FC = () => {
           className="message-input"
         />
         <button type="submit" className="send-button">Send</button>
-        <button type="button" className="end-chat-button" onClick={handleEndConversation}>
-          End Conversation
-        </button>
+        <button className="end-chat-button" onClick={handleEndConversation}>
+            End Conversation
+          </button>
       </form>
     </div>
   );

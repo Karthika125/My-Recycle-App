@@ -9,6 +9,8 @@ import Upload from './pages/upload';
 import Homepage from './pages/HomePage';
 import ProductDetails from "./pages/ProductDetails";
 import ChatPage from "./pages/ChatPage";
+import CraftInventory from "./pages/craft_page";
+import CraftIdeas from "./pages/CraftIdeas";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -36,6 +38,8 @@ const App: React.FC = () => {
             <Route path="/" element={<Homepage />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/chat/:itemId" element={<ChatPage />} />
+            <Route path="craft_page" element={<CraftInventory />} />
+            <Route path="/craft-ideas" element={<CraftIdeas />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
 
@@ -69,24 +73,3 @@ const App: React.FC = () => {
 
 export default App;
 
-// import React from 'react';
-// import { Routes, Route } from 'react-router-dom';
-// import HomePage from './pages/HomePage';
-// import ListItems from './pages/ListItems';
-// import ProductDetails from './pages/ProductDetails';
-// import ChatPage from './pages/ChatPage';
-// import Upload from './pages/UploadPage';
-
-// function App() {
-//   return (
-//     <Routes>
-//       <Route path="/" element={<HomePage />} />
-//       <Route path="/list" element={<ListItems />} />
-//       <Route path="/product/:id" element={<ProductDetails />} />
-//       <Route path="/chat/:id" element={<ChatPage />} />
-//       <Route path="/upload" element={<Upload />} />
-//     </Routes>
-//   );
-// }
-
-// export default App;
